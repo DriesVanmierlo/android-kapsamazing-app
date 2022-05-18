@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/kapsalonImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="25px"
+        android:src="@drawable/ic_baseline_image_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/kapsalonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="32dp"
-        android:textColor="@color/brown"
         android:padding="25px"
-        tools:text="Kapsalon kebab"
-        tools:ignore="MissingConstraints" />
+        android:textColor="@color/brown"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/kapsalonRestaurant"
+        app:layout_constraintStart_toEndOf="@+id/kapsalonImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:ignore="MissingConstraints"
+        tools:text="Kapsalon kebab" />
+
+    <TextView
+        android:id="@+id/kapsalonRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="25px"
+        android:textColor="@color/brown"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/kapsalonImage"
+        app:layout_constraintTop_toBottomOf="@+id/kapsalonName"
+        tools:text="Rana Kebab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
