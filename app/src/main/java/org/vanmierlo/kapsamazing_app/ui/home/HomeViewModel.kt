@@ -25,4 +25,5 @@ class HomeViewModel : ViewModel() {
 
 // Access the RequestQueue through your singleton class.
 //    MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+
 }

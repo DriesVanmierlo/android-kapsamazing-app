@@ -7,6 +7,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.vanmierlo.kapsamazing_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
+        val recyclerView: RecyclerView = findViewById(R.id.homeRecyclerView)
+
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -31,5 +35,17 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val kapsalons = mutableListOf<Kapsalon>()
+        for (i in 0..100){
+            kapsalons.add(
+                Kapsalon("Kapsalon kebab", "Rana Kebab", listOf("geleverd", "afhalen"), 8.00, "https://i.ibb.co/4gZc6kY/kebab-tasty-food-vesalius.jpg")
+            )
+        }
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = KapsalonsAdapter(kapsalons)
+
+
     }
 }
