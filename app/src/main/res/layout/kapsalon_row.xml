@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:elevation="10dp">
 
     <ImageView
         android:id="@+id/kapsalonImage"
@@ -25,8 +26,6 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/kapsalonRestaurant"
         app:layout_constraintStart_toEndOf="@+id/kapsalonImage"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
         tools:ignore="MissingConstraints"
         tools:text="Kapsalon kebab" />
 
@@ -37,10 +36,20 @@
         android:paddingStart="25px"
         android:textColor="@color/brown"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/kapsalonImage"
         app:layout_constraintTop_toBottomOf="@+id/kapsalonName"
         tools:text="Rana Kebab" />
+
+    <TextView
+        android:id="@+id/kapsalonOptions"
+        tools:text="afhalen, geleverd"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toBottomOf="@+id/kapsalonRestaurant"
+        app:layout_constraintStart_toEndOf="@+id/kapsalonImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="25px"
+        android:paddingTop="10px"/>
 
     <TextView
         android:id="@+id/kapsalonRating"
@@ -48,8 +57,19 @@
         android:layout_height="wrap_content"
         tools:text="4/5"
         android:textSize="24sp"
-        android:textFontWeight="800"
         app:layout_constraintTop_toTopOf="@+id/kapsalonName"
-        app:layout_constraintStart_toEndOf="@+id/kapsalonName"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingEnd="25px"
+        android:paddingTop="25px"/>
+
+    <TextView
+        android:id="@+id/kapsalonPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/kapsalonRating"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24sp"
+        tools:text="8,00"
+        android:paddingEnd="25px"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

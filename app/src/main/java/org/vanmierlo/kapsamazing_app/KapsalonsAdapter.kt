@@ -28,6 +28,9 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>) : RecyclerView.Ada
 
         holder.kapsalonName.text = kapsalon.name
         holder.kapsalonRestaurant.text = kapsalon.restaurant
+        holder.kapsalonRating.text = kapsalon.latestGeneralRating.toString() + "/5"
+        holder.kapsalonPrice.text = "€" + kapsalon.price.toString()
+        holder.kapsalonOptions.text = kapsalon.delivered.toString()
 
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
@@ -54,5 +57,8 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>) : RecyclerView.Ada
         val kapsalonName: TextView = itemView.findViewById(R.id.kapsalonName)
         val kapsalonRestaurant: TextView = itemView.findViewById(R.id.kapsalonRestaurant)
         val kapsalonImage: ImageView = itemView.findViewById(R.id.kapsalonImage)
+        val kapsalonRating: TextView = itemView.findViewById(R.id.kapsalonRating)
+        val kapsalonPrice: TextView = itemView.findViewById(R.id.kapsalonPrice)
+        val kapsalonOptions: TextView = itemView.findViewById(R.id.kapsalonOptions)
     }
 }

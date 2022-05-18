@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://web2-kapsamazing-driesv.herokuapp.com")
+            .baseUrl("https://web2-kapsamazing-driesv.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 response: Response<List<Kapsalon>>
             ) {
                 showData(response.body()!!)
-//                d("kapsalon","onResponse: ${response.body()!![0].price}")
+//                d("kapsalon","onResponse: ${response.body()!![0].name}")
             }
 
             override fun onFailure(call: Call<List<Kapsalon>>, t: Throwable) {
@@ -67,15 +67,10 @@ class MainActivity : AppCompatActivity() {
 //                Kapsalon("Kapsalon kebab","Bocholt", "Rana Kebab", "Kebab", listOf("geleverd", "afhalen"), 8.00,123456,  "https://i.ibb.co/4gZc6kY/kebab-tasty-food-vesalius.jpg")
 //            )
 //        }
-
-
-
-
     }
 
     private fun showData(kapsalons: List<Kapsalon>) {
         val recyclerView: RecyclerView = findViewById(R.id.homeRecyclerView)
-
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = KapsalonsAdapter(kapsalons)
     }
