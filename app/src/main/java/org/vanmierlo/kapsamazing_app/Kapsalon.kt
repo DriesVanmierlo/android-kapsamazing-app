@@ -8,6 +8,7 @@ data class Kapsalon(
     val delivered: List<String>,
     val price: Double,
     val kapid: Int,
+    val latestGeneralRating: Int,
     val image: String
 ) {
 }

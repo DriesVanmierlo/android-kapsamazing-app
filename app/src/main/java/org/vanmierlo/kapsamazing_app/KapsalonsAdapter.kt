@@ -1,11 +1,18 @@
 package org.vanmierlo.kapsamazing_app
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Looper
+import android.os.Bundle
+import android.os.Handler
 import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.util.concurrent.Executors
 
 class KapsalonsAdapter(private val kapsalons: List<Kapsalon>) : RecyclerView.Adapter<KapsalonsAdapter.ViewHolder>() {
 
@@ -21,6 +28,24 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>) : RecyclerView.Ada
 
         holder.kapsalonName.text = kapsalon.name
         holder.kapsalonRestaurant.text = kapsalon.restaurant
+
+        val executor = Executors.newSingleThreadExecutor()
+        val handler = Handler(Looper.getMainLooper())
+        var image: Bitmap? = null
+        executor.execute {
+            val imageUrl = kapsalon.image
+
+            try {
+                val `in` = java.net.URL(imageUrl).openStream()
+                image = BitmapFactory.decodeStream(`in`)
+
+                handler.post {
+                    holder.kapsalonImage.setImageBitmap(image)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     override fun getItemCount() = kapsalons.size
@@ -28,5 +53,6 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>) : RecyclerView.Ada
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val kapsalonName: TextView = itemView.findViewById(R.id.kapsalonName)
         val kapsalonRestaurant: TextView = itemView.findViewById(R.id.kapsalonRestaurant)
+        val kapsalonImage: ImageView = itemView.findViewById(R.id.kapsalonImage)
     }
 }
