@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         val api = retrofit.create(ApiService::class.java)
 
         var kapsalonsList = listOf<Kapsalon>()
+        var kapsalonAdapter = KapsalonsAdapter(kapsalonsList)
 
         api.getAllKapsalons().enqueue(object : Callback<List<Kapsalon>>{
             override fun onResponse(
@@ -76,9 +77,23 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<Kapsalon>>, t: Throwable) {
                 d("kapsalon", "onFailure")
+
+                if(kapsalonsList.isNotEmpty()){
+                    loadRoomKapsalons()
+                }
+
             }
 
         })
+
+//        fun loadRoomKapsalons(){
+//            kapsalonViewModel.allKapsalons.observe(this) {
+//                    kapsalons -> kapsalons?.let { kapsalonsList = it }
+//                kapsalonAdapter.kapsalons = kapsalons
+//                kapsalonAdapter.notifyDataSetChanged()
+//            }
+//            showData(kapsalonsList)
+//        }
 
 //        val kapsalons = mutableListOf<Kapsalon>()
 //        for (i in 0..100){
@@ -94,6 +109,18 @@ class MainActivity : AppCompatActivity() {
 //
 //        val kapsalonDao = db.kapsalonDao()
 //        val kapsalonsLocal: List<KapsalonRow> = kapsalonDao.getAll()
+    }
+
+    fun loadRoomKapsalons(){
+        var kapsalonsList = listOf<Kapsalon>()
+        var kapsalonAdapter = KapsalonsAdapter(kapsalonsList)
+
+        kapsalonViewModel.allKapsalons.observe(this) {
+                kapsalons -> kapsalons?.let { kapsalonsList = it }
+            kapsalonAdapter.kapsalons = kapsalons
+            kapsalonAdapter.notifyDataSetChanged()
+        }
+        showData(kapsalonsList)
     }
 
     private fun showData(kapsalons: List<Kapsalon>) {

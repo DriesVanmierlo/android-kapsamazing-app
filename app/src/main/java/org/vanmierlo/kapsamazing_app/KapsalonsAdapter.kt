@@ -13,8 +13,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.concurrent.Executors
-
-class KapsalonsAdapter(private val kapsalons: List<Kapsalon>) : RecyclerView.Adapter<KapsalonsAdapter.ViewHolder>() {
+//Changed private val to var
+class KapsalonsAdapter(var kapsalons: List<Kapsalon>) : RecyclerView.Adapter<KapsalonsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.kapsalon_row, parent, false)
