@@ -2,6 +2,7 @@ package org.vanmierlo.kapsamazing_app
 
 import android.os.Bundle
 import android.util.Log.d
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -10,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import org.vanmierlo.kapsamazing_app.databinding.ActivityMainBinding
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,6 +19,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val kapsalonViewModel: MainViewModel by viewModels {
+        KapsalonViewModelFactory((application as KapsalonsApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +52,8 @@ class MainActivity : AppCompatActivity() {
 
         val api = retrofit.create(ApiService::class.java)
 
+        var kapsalonsList = listOf<Kapsalon>()
+
         api.getAllKapsalons().enqueue(object : Callback<List<Kapsalon>>{
             override fun onResponse(
                 call: Call<List<Kapsalon>>,
@@ -53,6 +61,17 @@ class MainActivity : AppCompatActivity() {
             ) {
                 showData(response.body()!!)
 //                d("kapsalon","onResponse: ${response.body()!![0].name}")
+
+                //DELETE ALL CURRENT KAPSALONS
+                kapsalonViewModel.deleteAll()
+
+
+                //INSERT LOADED KAPSALONS TO ROOM
+                for (kapsalon in response.body()!!){
+                    kapsalonsList += kapsalon
+                    kapsalonViewModel.insert(Kapsalon(kapsalon.name, kapsalon.city, kapsalon.restaurant, kapsalon.type, kapsalon.delivered, kapsalon.price, kapsalon.kapid, kapsalon.latestGeneralRating, kapsalon.image))
+                }
+
             }
 
             override fun onFailure(call: Call<List<Kapsalon>>, t: Throwable) {
@@ -67,6 +86,14 @@ class MainActivity : AppCompatActivity() {
 //                Kapsalon("Kapsalon kebab","Bocholt", "Rana Kebab", "Kebab", listOf("geleverd", "afhalen"), 8.00,123456,  "https://i.ibb.co/4gZc6kY/kebab-tasty-food-vesalius.jpg")
 //            )
 //        }
+
+//        val db = Room.databaseBuilder(
+//            applicationContext,
+//            AppDatabase::class.java, "kapsamazing-database"
+//        ).build()
+//
+//        val kapsalonDao = db.kapsalonDao()
+//        val kapsalonsLocal: List<KapsalonRow> = kapsalonDao.getAll()
     }
 
     private fun showData(kapsalons: List<Kapsalon>) {
