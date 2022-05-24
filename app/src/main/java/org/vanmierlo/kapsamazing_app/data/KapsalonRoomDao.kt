@@ -1,18 +1,17 @@
 package org.vanmierlo.kapsamazing_app.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
-import org.vanmierlo.kapsamazing_app.Kapsalon
+import org.vanmierlo.kapsamazing_app.data.KapsalonRoom
 
 @Dao
 interface KapsalonRoomDao {
+
     @Query("SELECT * FROM kapsalons")
-    fun getAllKapsalons(): Flow<List<Kapsalon>>
+    fun getAllKapsalons(): Flow<List<KapsalonRoom>>
 
     @Insert
-    suspend fun insertKapsalon(kapsalon: Kapsalon)
+    suspend fun insertKapsalon(kapsalon: KapsalonRoom)
 
     @Query("DELETE FROM kapsalons")
     suspend fun deleteAll()

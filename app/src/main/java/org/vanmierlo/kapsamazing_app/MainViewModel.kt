@@ -2,13 +2,14 @@ package org.vanmierlo.kapsamazing_app
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
+import org.vanmierlo.kapsamazing_app.data.KapsalonRoom
 import org.vanmierlo.kapsamazing_app.data.MyRepository
 import java.lang.IllegalArgumentException
 
 class MainViewModel(private val repository: MyRepository): ViewModel() {
-    val allKapsalons: LiveData<List<Kapsalon>> = repository.allKapsalons.asLiveData()
+    val allKapsalons: LiveData<List<KapsalonRoom>> = repository.allKapsalons.asLiveData()
 
-    fun insert(kapsalon: Kapsalon) = viewModelScope.launch {
+    fun insert(kapsalon: KapsalonRoom) = viewModelScope.launch {
         repository.insertKapsalon(kapsalon)
     }
 

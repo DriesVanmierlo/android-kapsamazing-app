@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import org.vanmierlo.kapsamazing_app.Kapsalon
+import org.vanmierlo.kapsamazing_app.KapsalonRow
+import org.vanmierlo.kapsamazing_app.data.KapsalonRoom
 
-@Database(entities = [Kapsalon::class], version = 1)
+@Database(entities = [KapsalonRow::class], version = 1)
 public abstract class KapsalonDatabase: RoomDatabase() {
 
     abstract fun kapsalonDao(): KapsalonRoomDao

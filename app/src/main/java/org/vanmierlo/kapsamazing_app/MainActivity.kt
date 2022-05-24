@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import org.vanmierlo.kapsamazing_app.data.KapsalonRoom
 import org.vanmierlo.kapsamazing_app.databinding.ActivityMainBinding
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
@@ -52,35 +53,44 @@ class MainActivity : AppCompatActivity() {
 
         val api = retrofit.create(ApiService::class.java)
 
-        var kapsalonsList = listOf<Kapsalon>()
-        var kapsalonAdapter = KapsalonsAdapter(kapsalonsList)
+        var kapsalonsList = mutableListOf<Kapsalon>()
+        var kapsalonsListRoom = listOf<KapsalonRoom>()
+        var kapsalonRoomAdapter = KapsalonRoomAdapter(kapsalonsListRoom)
 
         api.getAllKapsalons().enqueue(object : Callback<List<Kapsalon>>{
             override fun onResponse(
                 call: Call<List<Kapsalon>>,
                 response: Response<List<Kapsalon>>
             ) {
+
                 showData(response.body()!!)
 //                d("kapsalon","onResponse: ${response.body()!![0].name}")
 
-                //DELETE ALL CURRENT KAPSALONS
-                kapsalonViewModel.deleteAll()
-
+//                DELETE ALL CURRENT KAPSALONS
+//                kapsalonViewModel.deleteAll()
 
                 //INSERT LOADED KAPSALONS TO ROOM
-                for (kapsalon in response.body()!!){
-                    kapsalonsList += kapsalon
-                    kapsalonViewModel.insert(Kapsalon(kapsalon.name, kapsalon.city, kapsalon.restaurant, kapsalon.type, kapsalon.delivered, kapsalon.price, kapsalon.kapid, kapsalon.latestGeneralRating, kapsalon.image))
+                for (kapsalon: Kapsalon in response.body()!!){
+                    kapsalonsList.add(kapsalon)
                 }
 
+                kapsalonsListRoom = convertToRoom(kapsalonsList)
+
+                for (kapsalon in kapsalonsListRoom){
+//                    kapsalonViewModel.insert(kapsalon)
+                    println(kapsalon)
+                }
+
+                println("getItemCount:")
+                println(kapsalonRoomAdapter.itemCount)
             }
 
             override fun onFailure(call: Call<List<Kapsalon>>, t: Throwable) {
                 d("kapsalon", "onFailure")
 
-                if(kapsalonsList.isNotEmpty()){
-                    loadRoomKapsalons()
-                }
+//                if(kapsalonsList.isNotEmpty()){
+//                    loadRoomKapsalons(kapsalonsList)
+//                }
 
             }
 
@@ -111,21 +121,43 @@ class MainActivity : AppCompatActivity() {
 //        val kapsalonsLocal: List<KapsalonRow> = kapsalonDao.getAll()
     }
 
-    fun loadRoomKapsalons(){
-        var kapsalonsList = listOf<Kapsalon>()
-        var kapsalonAdapter = KapsalonsAdapter(kapsalonsList)
-
-        kapsalonViewModel.allKapsalons.observe(this) {
-                kapsalons -> kapsalons?.let { kapsalonsList = it }
-            kapsalonAdapter.kapsalons = kapsalons
-            kapsalonAdapter.notifyDataSetChanged()
-        }
-        showData(kapsalonsList)
-    }
+//    fun loadRoomKapsalons(kapsalonsList: List<Kapsalon>){
+//        var kapsalonsList = listOf<Kapsalon>()
+//        var kapsalonAdapter = KapsalonsAdapter(kapsalonsList)
+//
+//        kapsalonViewModel.allKapsalons.observe(this) {
+//                kapsalons -> kapsalons?.let { kapsalonsList = it }
+//            kapsalonAdapter.kapsalons = kapsalons
+//            kapsalonAdapter.notifyDataSetChanged()
+//        }
+//        showData(kapsalonsList)
+//    }
 
     private fun showData(kapsalons: List<Kapsalon>) {
         val recyclerView: RecyclerView = findViewById(R.id.homeRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = KapsalonsAdapter(kapsalons)
+    }
+
+    fun convertToRoom(kapslonsList: List<Kapsalon>): List<KapsalonRoom>{
+        var kapsalonsListRoom = mutableListOf<KapsalonRoom>()
+
+        for (kapsalon in kapslonsList){
+            kapsalonsListRoom.add(
+                KapsalonRoom(
+                    id = 0,
+                    name = kapsalon.name,
+                    city = kapsalon.city,
+                    restaurant = kapsalon.restaurant,
+                    type = kapsalon.type,
+                    delivered = kapsalon.delivered,
+                    price = kapsalon.price,
+                    kapid = kapsalon.kapid,
+                    latestGeneralRating = kapsalon.latestGeneralRating,
+                    image = kapsalon.image
+                )
+            )
+        }
+        return kapsalonsListRoom
     }
 }
