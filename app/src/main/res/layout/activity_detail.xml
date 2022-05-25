@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity">
+
+
+    <TextView
+        android:id="@+id/detailTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64px"
+        android:gravity="center"
+        android:textColor="@color/brown"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Placeholder" />
+
+    <ImageView
+        android:id="@+id/detailKapsalonImage"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="32px"
+        android:layout_marginTop="128px"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailTitleText"
+        app:srcCompat="@drawable/ic_baseline_image_24" />
+
+    <TextView
+        android:id="@+id/detailScoresText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32px"
+        android:text="Scores"
+        android:textColor="@color/red"
+        android:textSize="21sp"
+        app:layout_constraintStart_toEndOf="@+id/detailKapsalonImage"
+        app:layout_constraintTop_toTopOf="@+id/detailKapsalonImage" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/scoresGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="297dp" />
+
+    <TextView
+        android:id="@+id/detailFriesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32px"
+        android:layout_marginEnd="32px"
+        android:text="Fries"
+        android:textColor="@color/brown"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/scoresGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/detailScoresText" />
+
+    <TextView
+        android:id="@+id/detailMeatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32px"
+        android:layout_marginEnd="32px"
+        android:text="Meat"
+        android:textColor="@color/brown"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/scoresGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/detailFriesText" />
+
+    <TextView
+        android:id="@+id/detailToppingsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32px"
+        android:layout_marginEnd="32px"
+        android:text="Toppings"
+        android:textColor="@color/brown"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/scoresGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/detailMeatText" />
+
+    <TextView
+        android:id="@+id/scoreFriesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/scoresGuideline"
+        app:layout_constraintTop_toTopOf="@+id/detailFriesText"
+        tools:text="4.5/5" />
+
+    <TextView
+        android:id="@+id/scoreMeatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/scoresGuideline"
+        app:layout_constraintTop_toTopOf="@+id/detailMeatText"
+        tools:text="4.5/5" />
+
+    <TextView
+        android:id="@+id/scoreToppingsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/scoresGuideline"
+        app:layout_constraintTop_toTopOf="@+id/detailToppingsText"
+        tools:text="4.5/5" />
+
+    <ImageView
+        android:id="@+id/detailMapImage"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="32px"
+        android:layout_marginTop="64px"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailKapsalonImage"
+        app:srcCompat="@drawable/ic_baseline_image_24" />
+
+
+    <Button
+        android:id="@+id/orderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order"
+        app:layout_constraintBottom_toBottomOf="@+id/detailMapImage"
+        app:layout_constraintStart_toEndOf="@id/scoresGuideline"
+        app:layout_constraintTop_toTopOf="@+id/detailMapImage" />
+
+    <TextView
+        android:id="@+id/detailPriceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32px"
+        tools:text="price"
+        android:textSize="18sp"
+        android:textColor="@color/brown"
+        app:layout_constraintBottom_toBottomOf="@+id/detailMapImage"
+        app:layout_constraintEnd_toStartOf="@id/scoresGuideline"
+        app:layout_constraintTop_toTopOf="@+id/detailMapImage" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
