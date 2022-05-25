@@ -7,13 +7,13 @@ import org.vanmierlo.kapsamazing_app.data.KapsalonRoom
 @Dao
 interface KapsalonRoomDao {
 
-    @Query("SELECT * FROM kapsalons")
+    @Query("SELECT * FROM kapsalonsroom")
     fun getAllKapsalons(): Flow<List<KapsalonRoom>>
 
     @Insert
     suspend fun insertKapsalon(kapsalon: KapsalonRoom)
 
-    @Query("DELETE FROM kapsalons")
+    @Query("DELETE FROM kapsalonsroom")
     suspend fun deleteAll()
 
 }

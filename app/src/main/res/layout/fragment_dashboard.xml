@@ -6,30 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
+
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/newKapsalonText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="TEST "
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Register new kapsalon"
+        android:layout_marginTop="32px"
+        android:textSize="24sp"
+        android:textColor="@color/brown"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <SearchView
+        android:id="@+id/newkapsalonSearch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginBottom="191dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        android:queryHint="Enter code here"
+        android:iconifiedByDefault="false"
+        android:gravity="center"
+        android:layout_marginTop="32px"
+        app:layout_constraintTop_toBottomOf="@+id/newKapsalonText"
+        />
+
+    <TextView
+        android:id="@+id/codeInfoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fill in the code of your meal to rate your kapsalon!"
+        app:layout_constraintTop_toBottomOf="@+id/newkapsalonSearch"
+        android:layout_marginTop="32px"
+        tools:ignore="MissingConstraints"
+        android:layout_marginLeft="128px"
+        android:textColor="@color/lightBrown" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

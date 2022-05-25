@@ -3,7 +3,7 @@ package org.vanmierlo.kapsamazing_app.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "kapsalons")
+@Entity(tableName = "kapsalonsroom")
 data class KapsalonRoom(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,

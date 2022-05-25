@@ -78,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 
                 for (kapsalon in kapsalonsListRoom){
 //                    kapsalonViewModel.insert(kapsalon)
+//                    kapsalonViewModel.insert(KapsalonRoom(0,"test", "test", "test" , "test" , listOf("test", "test") , 3.0 , "test", 4.5, "test"))
                     println(kapsalon)
                 }
 

@@ -10,4 +10,5 @@
     <color name="red">#ff3333</color>
     <color name="beige">#fffce5</color>
     <color name="brown">#5B3700</color>
+    <color name="lightBrown">#505B3700</color>
 </resources>
