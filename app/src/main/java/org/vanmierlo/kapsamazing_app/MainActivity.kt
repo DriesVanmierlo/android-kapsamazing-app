@@ -2,6 +2,7 @@ package org.vanmierlo.kapsamazing_app
 
 import android.os.Bundle
 import android.util.Log.d
+import android.widget.CheckBox
 import android.widget.SearchView
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -111,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 var filteredKapsalons: MutableList<Kapsalon> = mutableListOf()
 
                 for (kapsalon in kapsalons){
-                    if(kapsalon.restaurant.contains(s.toString()) || kapsalon.city.contains(s.toString())){
+                    if(kapsalon.restaurant.lowercase().contains(s.toString().lowercase()) || kapsalon.city.lowercase().contains(s.toString().lowercase())){
                         filteredKapsalons.add(kapsalon)
                     }
                 }
@@ -122,6 +123,18 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        var checkboxPickup: CheckBox = findViewById(R.id.homeCheckboxPickup)
+        var checkboxDelivery: CheckBox = findViewById(R.id.homeCheckboxDelivered)
+
+        checkboxPickup.setOnClickListener(){
+            filterCheckedKapsalons()
+        }
+
+        checkboxDelivery.setOnClickListener(){
+            filterCheckedKapsalons()
+        }
+
 
 //        fun loadRoomKapsalons(){
 //            kapsalonViewModel.allKapsalons.observe(this) {
@@ -159,6 +172,32 @@ class MainActivity : AppCompatActivity() {
 //        }
 //        showData(kapsalonsList)
 //    }
+
+    fun filterCheckedKapsalons(){
+        var filteredKapsalons: MutableList<Kapsalon> = mutableListOf()
+
+        var checkboxPickup: CheckBox = findViewById(R.id.homeCheckboxPickup)
+        var checkboxDelivery: CheckBox = findViewById(R.id.homeCheckboxDelivered)
+
+        if (checkboxPickup.isChecked && !checkboxDelivery.isChecked){
+            for (kapsalon in kapsalons){
+                if(kapsalon.delivered.contains("pickup")){
+                    filteredKapsalons.add(kapsalon)
+                }
+            }
+            showData(filteredKapsalons)
+
+        } else if (!checkboxPickup.isChecked && checkboxDelivery.isChecked){
+            for (kapsalon in kapsalons){
+                if(kapsalon.delivered.contains("delivery")){
+                    filteredKapsalons.add(kapsalon)
+                }
+            }
+            showData(filteredKapsalons)
+        } else {
+            showData(kapsalons)
+        }
+    }
 
     private fun showData(kapsalons: List<Kapsalon>) {
         val recyclerView: RecyclerView = findViewById(R.id.homeRecyclerView)
