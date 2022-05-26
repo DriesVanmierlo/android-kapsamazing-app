@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 response: Response<List<Kapsalon>>
             ) {
                 kapsalons = response.body()!!
-                showData(response.body()!!)
+                showData(response.body()!!.sortedByDescending { it.latestGeneralRating })
 //                d("kapsalon","onResponse: ${response.body()!![0].name}")
 
 //                DELETE ALL CURRENT KAPSALONS
@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
                     filteredKapsalons.add(kapsalon)
                 }
             }
-            showData(filteredKapsalons)
+            showData(filteredKapsalons.sortedByDescending { it.latestGeneralRating })
 
         } else if (!checkboxPickup.isChecked && checkboxDelivery.isChecked){
             for (kapsalon in kapsalons){
@@ -195,7 +195,7 @@ class MainActivity : AppCompatActivity() {
             }
             showData(filteredKapsalons)
         } else {
-            showData(kapsalons)
+            showData(kapsalons.sortedByDescending { it.latestGeneralRating })
         }
     }
 
