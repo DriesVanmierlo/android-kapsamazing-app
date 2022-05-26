@@ -25,7 +25,7 @@
         android:text="@string/kapsalons"
         tools:ignore="MissingConstraints"
         app:layout_constraintStart_toStartOf="@+id/search_bar"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/homeCheckboxPickup"
         android:layout_marginTop="32px"
         android:textSize="24sp"
         android:layout_marginStart="32px"
@@ -40,6 +40,16 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="150px"/>
+
+    <CheckBox
+        android:id="@+id/homeCheckboxPickup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:layout_constraintStart_toStartOf="@+id/search_bar"
+        android:layout_marginStart="32px"
+        android:textColor="@color/red"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

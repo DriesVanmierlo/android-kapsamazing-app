@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import org.vanmierlo.kapsamazing_app.Kapsalon
 import org.vanmierlo.kapsamazing_app.databinding.FragmentHomeBinding
+import org.vanmierlo.kapsamazing_app.ui.PostClickHandler
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), PostClickHandler {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -38,5 +40,9 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun clickedPostItem(post: Kapsalon) {
+        super.clickedPostItem(post)
     }
 }
