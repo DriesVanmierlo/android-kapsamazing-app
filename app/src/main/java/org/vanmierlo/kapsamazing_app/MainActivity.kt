@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                showData(filteredKapsalons)
+                filterCheckedKapsalons(filteredKapsalons)
 
                 return false
             }
@@ -128,11 +128,11 @@ class MainActivity : AppCompatActivity() {
         var checkboxDelivery: CheckBox = findViewById(R.id.homeCheckboxDelivered)
 
         checkboxPickup.setOnClickListener(){
-            filterCheckedKapsalons()
+            filterCheckedKapsalons(kapsalons)
         }
 
         checkboxDelivery.setOnClickListener(){
-            filterCheckedKapsalons()
+            filterCheckedKapsalons(kapsalons)
         }
 
 
@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity() {
 //        showData(kapsalonsList)
 //    }
 
-    fun filterCheckedKapsalons(){
+    fun filterCheckedKapsalons(kapsalons: List<Kapsalon>){
         var filteredKapsalons: MutableList<Kapsalon> = mutableListOf()
 
         var checkboxPickup: CheckBox = findViewById(R.id.homeCheckboxPickup)
