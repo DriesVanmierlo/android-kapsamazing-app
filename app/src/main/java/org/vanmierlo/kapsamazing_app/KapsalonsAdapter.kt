@@ -40,6 +40,7 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>,
         holder.kapsalonRating.text = kapsalon.latestGeneralRating.toString() + "/5"
         holder.kapsalonPrice.text = "€" + kapsalon.price.toString()
         holder.kapsalonOptions.text = kapsalon.delivered.toString()
+        holder.kapsalonCity.text = kapsalon.city
 
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
@@ -83,6 +84,7 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>,
         val kapsalonRating: TextView = itemView.findViewById(R.id.kapsalonRating)
         val kapsalonPrice: TextView = itemView.findViewById(R.id.kapsalonPrice)
         val kapsalonOptions: TextView = itemView.findViewById(R.id.kapsalonOptions)
+        val kapsalonCity: TextView = itemView.findViewById(R.id.kapsalonCity)
 
         override fun onClick(p0: View?) {
             val position = adapterPosition
