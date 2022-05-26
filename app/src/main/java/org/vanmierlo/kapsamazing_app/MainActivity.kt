@@ -2,6 +2,7 @@ package org.vanmierlo.kapsamazing_app
 
 import android.os.Bundle
 import android.util.Log.d
+import android.widget.SearchView
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    var kapsalons: List<Kapsalon> = listOf()
 
     private val kapsalonViewModel: MainViewModel by viewModels {
         KapsalonViewModelFactory((application as KapsalonsApplication).repository)
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 call: Call<List<Kapsalon>>,
                 response: Response<List<Kapsalon>>
             ) {
-
+                kapsalons = response.body()!!
                 showData(response.body()!!)
 //                d("kapsalon","onResponse: ${response.body()!![0].name}")
 
@@ -93,6 +95,30 @@ class MainActivity : AppCompatActivity() {
 //                    loadRoomKapsalons(kapsalonsList)
 //                }
 
+            }
+
+        })
+
+        var searchView: SearchView = findViewById(R.id.search_bar)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(s: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(s: String?): Boolean {
+
+                var filteredKapsalons: MutableList<Kapsalon> = mutableListOf()
+
+                for (kapsalon in kapsalons){
+                    if(kapsalon.restaurant.contains(s.toString()) || kapsalon.city.contains(s.toString())){
+                        filteredKapsalons.add(kapsalon)
+                    }
+                }
+
+                showData(filteredKapsalons)
+
+                return false
             }
 
         })

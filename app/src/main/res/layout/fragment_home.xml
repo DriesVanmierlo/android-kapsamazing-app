@@ -45,9 +45,21 @@
         android:id="@+id/homeCheckboxPickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CheckBox"
+        android:text="Pickup"
+        android:buttonTint="@color/red"
         app:layout_constraintTop_toBottomOf="@+id/search_bar"
         app:layout_constraintStart_toStartOf="@+id/search_bar"
+        android:layout_marginStart="32px"
+        android:textColor="@color/red"/>
+
+    <CheckBox
+        android:id="@+id/homeCheckboxDelivered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delivered"
+        android:buttonTint="@color/red"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:layout_constraintStart_toEndOf="@+id/homeCheckboxPickup"
         android:layout_marginStart="32px"
         android:textColor="@color/red"/>
 
