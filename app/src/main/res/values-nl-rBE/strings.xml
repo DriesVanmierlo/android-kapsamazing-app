@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">kapsamazing-app</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Code</string>
+    <string name="title_notifications">Profiel</string>
+    <string name="title_code">Code</string>
+    <string name="title_profile">Profiel</string>
+    <string name="kapsalons">Kapsalons</string>
+    <string name="search_hint_home">Stad, restaurant, ...</string>
+    <string name="pickup">Uithalen</string>
+    <string name="delivered">Bezorgen</string>
+    <string name="register_kapsalon">Registreer nieuwe kapsalon</string>
+    <string name="enter_code">Geef hier de code in</string>
+    <string name="enter_code_description">Vul hier de code in om jouw kapsalon een score te geven!</string>
+    <string name="register">Registreer</string>
+    <string name="rated_kapsalons">Mijn beoordeelde kapsalons</string>
+</resources>

@@ -1,9 +1,11 @@
 package org.vanmierlo.kapsamazing_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log.d
 import android.widget.CheckBox
 import android.widget.SearchView
+import android.widget.TextView
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -134,6 +136,16 @@ class MainActivity : AppCompatActivity() {
         checkboxDelivery.setOnClickListener(){
             filterCheckedKapsalons(kapsalons)
         }
+
+        recyclerView.setOnClickListener(){
+            startActivity(Intent(this, DetailActivity::class.java))
+        }
+
+        var title: TextView = findViewById(R.id.text_home_kapsalons)
+        title.setOnClickListener(){
+            startActivity(Intent(this, DetailActivity::class.java))
+        }
+
 
 
 //        fun loadRoomKapsalons(){

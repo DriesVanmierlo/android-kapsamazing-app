@@ -6,4 +6,12 @@
     <string name="title_code">Code</string>
     <string name="title_profile">Profile</string>
     <string name="kapsalons">Kapsalons</string>
+    <string name="search_hint_home">City, restaurant, ...</string>
+    <string name="pickup">Pickup</string>
+    <string name="delivered">Delivered</string>
+    <string name="register_kapsalon">Register new kapsalon</string>
+    <string name="enter_code">Enter code here</string>
+    <string name="enter_code_description">Fill in the code of your meal to rate your kapsalon!</string>
+    <string name="register">Register</string>
+    <string name="rated_kapsalons">My rated kapsalons</string>
 </resources>

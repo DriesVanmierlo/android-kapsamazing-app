@@ -19,6 +19,8 @@ import org.vanmierlo.kapsamazing_app.databinding.ActivityMainBinding
 import org.vanmierlo.kapsamazing_app.databinding.FragmentHomeBinding
 import org.vanmierlo.kapsamazing_app.ui.PostClickHandler
 import java.util.concurrent.Executors
+import android.content.Context
+
 //Changed private val to var
 class KapsalonsAdapter(private val kapsalons: List<Kapsalon>,
 //                       private val clickHandler: PostClickHandler
@@ -41,6 +43,13 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>,
         holder.kapsalonPrice.text = "€" + kapsalon.price.toString()
         holder.kapsalonOptions.text = kapsalon.delivered.toString()
         holder.kapsalonCity.text = kapsalon.city
+
+//        holder.kapsalonItem.setOnClickListener{
+//            startActivity(Intent(this, DetailActivity::class.java))
+//        }
+
+//        val intent: Intent = Intent(context, DetailActivity::class.java)
+//        context.startActivity(intent)
 
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
@@ -90,6 +99,9 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>,
             val position = adapterPosition
             val currentKapsalon = kapsalons[position]
         }
+
+        var kapsalonItem: ImageView = itemView.findViewById(R.id.kapsalonImage)
+
     }
 
 //    private fun onClick(itemView: View){

@@ -11,7 +11,7 @@
         android:id="@+id/profileRatedText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My rated kapsalons"
+        android:text="@string/rated_kapsalons"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="32px"
         android:textColor="@color/brown"
