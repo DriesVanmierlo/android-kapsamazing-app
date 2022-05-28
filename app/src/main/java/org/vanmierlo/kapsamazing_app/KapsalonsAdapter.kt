@@ -43,6 +43,7 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>,
         holder.kapsalonPrice.text = "€" + kapsalon.price.toString()
         holder.kapsalonOptions.text = kapsalon.delivered.toString()
         holder.kapsalonCity.text = kapsalon.city
+        holder.kapsalonButton.id = kapsalon.kapid.toInt()
 
 //        holder.kapsalonItem.setOnClickListener{
 //            startActivity(Intent(this, DetailActivity::class.java))
@@ -94,6 +95,7 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>,
         val kapsalonPrice: TextView = itemView.findViewById(R.id.kapsalonPrice)
         val kapsalonOptions: TextView = itemView.findViewById(R.id.kapsalonOptions)
         val kapsalonCity: TextView = itemView.findViewById(R.id.kapsalonCity)
+        val kapsalonButton: TextView = itemView.findViewById(R.id.kapsalonButton)
 
         override fun onClick(p0: View?) {
             val position = adapterPosition

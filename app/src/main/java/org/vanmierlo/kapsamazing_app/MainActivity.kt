@@ -1,8 +1,10 @@
 package org.vanmierlo.kapsamazing_app
 
 import android.content.Intent
+import android.content.Intent.EXTRA_TEXT
 import android.os.Bundle
 import android.util.Log.d
+import android.view.View
 import android.widget.CheckBox
 import android.widget.SearchView
 import android.widget.TextView
@@ -151,6 +153,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
 //        fun loadRoomKapsalons(){
 //            kapsalonViewModel.allKapsalons.observe(this) {
 //                    kapsalons -> kapsalons?.let { kapsalonsList = it }
@@ -187,6 +191,12 @@ class MainActivity : AppCompatActivity() {
 //        }
 //        showData(kapsalonsList)
 //    }
+
+    fun loadDetails(view: View){
+        var kapid = view.getId().toString()
+        var intent = Intent(this, DetailActivity::class.java).apply { putExtra(EXTRA_TEXT, kapid) }
+        startActivity(intent)
+    }
 
     fun filterCheckedKapsalons(kapsalons: List<Kapsalon>){
         var filteredKapsalons: MutableList<Kapsalon> = mutableListOf()
