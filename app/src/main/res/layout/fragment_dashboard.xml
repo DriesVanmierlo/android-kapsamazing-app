@@ -19,20 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <SearchView
-        android:id="@+id/newkapsalonSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        android:queryHint="@string/enter_code"
-        android:iconifiedByDefault="false"
-        android:gravity="center"
-        android:layout_marginTop="32px"
-        android:maxWidth="250dp"
-        app:layout_constraintTop_toBottomOf="@+id/newKapsalonText"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/codeInfoText"
         android:layout_width="match_parent"
@@ -41,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/newkapsalonSearch"
         android:layout_marginTop="32px"
         tools:ignore="MissingConstraints"
-        android:layout_marginStart="128px"
+        android:layout_marginStart="32px"
         android:textColor="@color/lightBrown" />
 
     <Button
@@ -52,6 +38,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/newkapsalonSearch"
         android:layout_marginEnd="32px"/>
+
+    <EditText
+        android:id="@+id/newkapsalonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="32px"
+        android:hint="@string/enter_code"
+        android:textColorHint="@color/lightBrown"
+        android:textColor="@color/brown"
+        android:textAlignment="textStart"
+        android:iconifiedByDefault="false"
+        android:layout_marginTop="32px"
+        android:maxWidth="250dp"
+        app:layout_constraintTop_toBottomOf="@+id/newKapsalonText"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import org.vanmierlo.kapsamazing_app.data.KapsalonRoom
 import org.vanmierlo.kapsamazing_app.databinding.ActivityMainBinding
+import org.vanmierlo.kapsamazing_app.ui.dashboard.DashboardFragment
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -61,6 +62,8 @@ class MainActivity : AppCompatActivity() {
         var kapsalonsList = mutableListOf<Kapsalon>()
         var kapsalonsListRoom = listOf<KapsalonRoom>()
         var kapsalonRoomAdapter = KapsalonRoomAdapter(kapsalonsListRoom)
+
+        val detailFragment = DashboardFragment()
 
         api.getAllKapsalons().enqueue(object : Callback<List<Kapsalon>>{
             override fun onResponse(
