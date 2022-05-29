@@ -44,19 +44,19 @@ class DashboardFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val registerButton: Button = view.findViewById(R.id.registerButton)
 
-        registerButton.setOnClickListener{
-            d("check input", "button clicked!")
-            val searchBar: EditText = view.findViewById(R.id.newkapsalonSearch)
-            val input = searchBar.text.toString()
-
-            val bundle = Bundle()
-            bundle.putString("kapid", input)
-
-            val ratingFragment = RatingFragment()
-            ratingFragment.arguments = bundle
-            fragmentManager?.beginTransaction()?.replace(R.id.navigation_dashboard, ratingFragment)?.commit()
-
-        }
+//        registerButton.setOnClickListener{
+//            d("check input", "button clicked!")
+//            val searchBar: EditText = view.findViewById(R.id.newkapsalonSearch)
+//            val input = searchBar.text.toString()
+//
+//            val bundle = Bundle()
+//            bundle.putString("kapid", input)
+//
+//            val ratingFragment = RatingFragment()
+//            ratingFragment.arguments = bundle
+//            fragmentManager?.beginTransaction()?.replace(R.id.navigation_dashboard, ratingFragment)?.commit()
+//
+//        }
 
 
         return view

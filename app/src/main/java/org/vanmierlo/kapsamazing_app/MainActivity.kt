@@ -5,9 +5,7 @@ import android.content.Intent.EXTRA_TEXT
 import android.os.Bundle
 import android.util.Log.d
 import android.view.View
-import android.widget.CheckBox
-import android.widget.SearchView
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -142,19 +140,6 @@ class MainActivity : AppCompatActivity() {
             filterCheckedKapsalons(kapsalons)
         }
 
-        recyclerView.setOnClickListener(){
-            startActivity(Intent(this, DetailActivity::class.java))
-        }
-
-        var title: TextView = findViewById(R.id.text_home_kapsalons)
-        title.setOnClickListener(){
-            startActivity(Intent(this, DetailActivity::class.java))
-        }
-
-
-
-
-
 //        fun loadRoomKapsalons(){
 //            kapsalonViewModel.allKapsalons.observe(this) {
 //                    kapsalons -> kapsalons?.let { kapsalonsList = it }
@@ -195,6 +180,12 @@ class MainActivity : AppCompatActivity() {
     fun loadDetails(view: View){
         var kapid = view.getId().toString()
         var intent = Intent(this, DetailActivity::class.java).apply { putExtra(EXTRA_TEXT, kapid) }
+        startActivity(intent)
+    }
+
+    fun loadRating(view: View){
+        var kapidCode = findViewById<EditText>(R.id.newkapsalonSearch).text.toString()
+        var intent = Intent(this, RatingActivity::class.java).apply { putExtra(EXTRA_TEXT, kapidCode) }
         startActivity(intent)
     }
 
