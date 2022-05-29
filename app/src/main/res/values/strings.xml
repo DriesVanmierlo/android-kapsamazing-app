@@ -14,4 +14,8 @@
     <string name="enter_code_description">Fill in the code of your meal to rate your kapsalon!</string>
     <string name="register">Register</string>
     <string name="rated_kapsalons">My rated kapsalons</string>
+    <string name="order">Order</string>
+    <string name="fries">Fries</string>
+    <string name="meat">Meat</string>
+    <string name="toppings">Toppings</string>
 </resources>

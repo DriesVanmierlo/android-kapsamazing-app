@@ -15,4 +15,8 @@
     <string name="enter_code_description">Vul hier de code in om jouw kapsalon een score te geven!</string>
     <string name="register">Registreer</string>
     <string name="rated_kapsalons">Mijn beoordeelde kapsalons</string>
+    <string name="order">Bestel</string>
+    <string name="fries">Frieten</string>
+    <string name="meat">Vlees</string>
+    <string name="toppings">Toppings</string>
 </resources>
