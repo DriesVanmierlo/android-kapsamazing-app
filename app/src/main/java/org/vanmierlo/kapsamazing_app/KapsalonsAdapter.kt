@@ -39,7 +39,11 @@ class KapsalonsAdapter(private val kapsalons: List<Kapsalon>,
 
         holder.kapsalonName.text = kapsalon.name
         holder.kapsalonRestaurant.text = kapsalon.restaurant
-        holder.kapsalonRating.text = kapsalon.latestGeneralRating.toString() + "/5"
+        if (!kapsalon.ratings.isEmpty()){
+            holder.kapsalonRating.text = kapsalon.latestGeneralRating.toString() + "/5"
+        } else {
+            holder.kapsalonRating.text = "?/5"
+        }
         holder.kapsalonPrice.text = "€" + kapsalon.price.toString()
         holder.kapsalonOptions.text = kapsalon.delivered.toString()
         holder.kapsalonCity.text = kapsalon.city

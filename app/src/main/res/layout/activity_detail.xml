@@ -160,5 +160,16 @@
         app:layout_constraintEnd_toStartOf="@id/scoresGuideline"
         app:layout_constraintTop_toTopOf="@+id/detailMapImage" />
 
+    <TextView
+        android:id="@+id/detailRatingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="4.5/5"
+        app:layout_constraintTop_toTopOf="@+id/detailTitleText"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="32px"
+        android:textSize="32sp"
+        android:textColor="@color/brown"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
