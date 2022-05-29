@@ -3,6 +3,7 @@ package org.vanmierlo.kapsamazing_app
 import java.util.*
 
 data class Kapsalon(
+    val id: String,
     val name: String,
     val city: String,
     val restaurant: String,

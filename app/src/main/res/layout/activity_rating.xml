@@ -84,7 +84,8 @@
       app:layout_constraintTop_toTopOf="@+id/ratingFriesText"
       android:thumbTint="@color/red"
       android:progressTint="@color/brown"
-      android:onClick="getValue"/>
+      android:max="10"
+      android:progress="6"/>
 
   <SeekBar
       android:id="@+id/seekBarMeat"
@@ -93,7 +94,9 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@+id/ratingMeatText"
       android:thumbTint="@color/red"
-      android:progressTint="@color/brown"/>
+      android:progressTint="@color/brown"
+      android:max="10"
+      android:progress="6"/>
 
   <SeekBar
       android:id="@+id/seekBarToppings"
@@ -102,7 +105,9 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@+id/ratingToppingsText"
       android:thumbTint="@color/red"
-      android:progressTint="@color/brown"/>
+      android:progressTint="@color/brown"
+      android:max="10"
+      android:progress="6"/>
 
 
   <Button
