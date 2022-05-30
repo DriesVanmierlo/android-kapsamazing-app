@@ -3,7 +3,6 @@ package org.vanmierlo.kapsamazing_app
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.text.TextRunShaper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +12,16 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -71,9 +80,10 @@ class RatingActivity : AppCompatActivity() {
         return progress
     }
 
-    fun buildRequest(friesR: Double, meatR: Double, toppingsR: Double, currentRatings: List<Rating>){
+    fun buildRequest(friesR: Double, meatR: Double, toppingsR: Double, currentRatings: List<Rating>, kapsalon: Kapsalon){
         val retrofit = Retrofit.Builder()
             .baseUrl("https://web2-kapsamazing-driesv.herokuapp.com/")
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val api = retrofit.create(ApiService::class.java)
@@ -84,8 +94,41 @@ class RatingActivity : AppCompatActivity() {
         var newLatestGeneralScore = calculateNewGeneralScore(allRatings)
 
         val jsonObject = JSONObject()
-        jsonObject.put("ratings", allRatings.toString())
-        jsonObject.put("latestGeneralScore", "iOS Developer")
+        jsonObject.put("ratings", Gson().toJson(allRatings))
+        jsonObject.put("latestGeneralRating", newLatestGeneralScore)
+
+        val jsonObjectString = jsonObject.toString()
+
+        val requestBody: RequestBody = jsonObjectString.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+        println(jsonObjectString)
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            // Do the PUT request and get response
+            val response = api.updateKapsalonRating(id = kapsalon._id, requestBody)
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+
+                    // Convert raw JSON to pretty JSON using GSON library
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
+                        )
+                    )
+
+                    Log.d("Pretty Printed JSON :", prettyJson)
+
+                } else {
+
+                    Log.e("RETROFIT_ERROR", response.code().toString())
+
+                }
+            }
+        }
+
     }
 
     fun calculateNewGeneralScore(ratings: MutableList<Rating>): BigDecimal? {
@@ -136,8 +179,10 @@ class RatingActivity : AppCompatActivity() {
             var toppingsRating = getProgress(toppingsBar)
 
             var currentRatings: List<Rating> = details.ratings
+            println(currentRatings)
+            println(details.ratings)
 
-            buildRequest(friesRating, meatRating, toppingsRating, currentRatings)
+            buildRequest(friesRating, meatRating, toppingsRating, currentRatings, details)
         }
     }
 }
