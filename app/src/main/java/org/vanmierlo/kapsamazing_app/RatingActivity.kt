@@ -8,10 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
@@ -92,15 +89,23 @@ class RatingActivity : AppCompatActivity() {
         allRatings.add(Rating(friesR, meatR, toppingsR))
 
         var newLatestGeneralScore = calculateNewGeneralScore(allRatings)
+        var ratingsArray = arrayListOf<Rating>()
+
+        for (r in allRatings){
+            ratingsArray.add(r)
+        }
+
+        var saveRatingRequest = SaveRatingRequest(Gson().toJson(ratingsArray), newLatestGeneralScore!!.toInt())
 
         val jsonObject = JSONObject()
-        jsonObject.put("ratings", Gson().toJson(allRatings))
-        jsonObject.put("latestGeneralRating", newLatestGeneralScore)
+        jsonObject.put("ratings", saveRatingRequest.ratings)
+        jsonObject.put("latestGeneralRating", saveRatingRequest.latestGeneralRating)
 
         val jsonObjectString = jsonObject.toString()
+        println(jsonObjectString)
 
         val requestBody: RequestBody = jsonObjectString.toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
-        println(jsonObjectString)
+
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -183,6 +188,9 @@ class RatingActivity : AppCompatActivity() {
             println(details.ratings)
 
             buildRequest(friesRating, meatRating, toppingsRating, currentRatings, details)
+            var toast = Toast.makeText(applicationContext, "Saved your rating!", Toast.LENGTH_LONG).show()
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
