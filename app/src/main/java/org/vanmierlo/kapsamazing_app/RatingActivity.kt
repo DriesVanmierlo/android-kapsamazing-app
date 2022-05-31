@@ -34,6 +34,8 @@ class RatingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rating)
 
+        setTitle("Rate kapsalon")
+
         val kapid = intent.getStringExtra(Intent.EXTRA_TEXT)
         println(kapid)
 
@@ -176,7 +178,59 @@ class RatingActivity : AppCompatActivity() {
         val meatBar = findViewById<SeekBar>(R.id.seekBarMeat)
         val toppingsBar = findViewById<SeekBar>(R.id.seekBarToppings)
 
-        val submitButton = findViewById<Button>(R.id.submitRatingButton)
+        friesBar?.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(
+                seek: SeekBar,
+                progress: Int, fromUser: Boolean
+            ) {
+                var liveScore = findViewById<TextView>(R.id.ratingFriesScore)
+                var score: Double = progress.toDouble() / 2
+                liveScore.text = "${score}" + "/5"
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
+        meatBar?.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(
+                seek: SeekBar,
+                progress: Int, fromUser: Boolean
+            ) {
+                var liveScore = findViewById<TextView>(R.id.ratingMeatScore)
+                var score: Double = progress.toDouble() / 2
+                liveScore.text = "${score}" + "/5"
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
+        toppingsBar?.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(
+                seek: SeekBar,
+                progress: Int, fromUser: Boolean
+            ) {
+                var liveScore = findViewById<TextView>(R.id.ratingToppingsScore)
+                var score: Double = progress.toDouble() / 2
+                liveScore.text = "${score}" + "/5"
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
+
+            val submitButton = findViewById<Button>(R.id.submitRatingButton)
 
         submitButton.setOnClickListener(){
             var friesRating = getProgress(friesBar)
@@ -187,7 +241,7 @@ class RatingActivity : AppCompatActivity() {
             println(currentRatings)
             println(details.ratings)
 
-            buildRequest(friesRating, meatRating, toppingsRating, currentRatings, details)
+//            buildRequest(friesRating, meatRating, toppingsRating, currentRatings, details)
             var toast = Toast.makeText(applicationContext, "Saved your rating!", Toast.LENGTH_LONG).show()
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

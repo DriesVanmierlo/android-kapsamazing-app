@@ -54,6 +54,17 @@
       android:textColor="@color/brown"/>
 
   <TextView
+      android:id="@+id/ratingFriesScore"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="3.0/5"
+      app:layout_constraintTop_toBottomOf="@+id/ratingScoreTitleText"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginEnd="32px"
+      android:layout_marginTop="32px"
+      android:textColor="@color/red"/>
+
+  <TextView
       android:id="@+id/ratingMeatText"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -65,6 +76,17 @@
       android:textColor="@color/brown"/>
 
   <TextView
+      android:id="@+id/ratingMeatScore"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="3.0/5"
+      app:layout_constraintTop_toBottomOf="@+id/seekBarFries"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginEnd="32px"
+      android:layout_marginTop="32px"
+      android:textColor="@color/red"/>
+
+  <TextView
       android:id="@+id/ratingToppingsText"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -74,6 +96,17 @@
       android:layout_marginStart="32px"
       android:layout_marginTop="32px"
       android:textColor="@color/brown"/>
+
+  <TextView
+      android:id="@+id/ratingToppingsScore"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="3.0/5"
+      app:layout_constraintTop_toBottomOf="@+id/seekBarMeat"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginEnd="32px"
+      android:layout_marginTop="32px"
+      android:textColor="@color/red"/>
 
 
   <SeekBar
