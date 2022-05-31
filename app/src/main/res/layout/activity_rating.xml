@@ -11,7 +11,7 @@
       android:id="@+id/ratingTitleText"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="TextView"
+      tools:text="TextView"
       app:layout_constraintTop_toTopOf="parent"
       android:layout_marginStart="32px"
       android:layout_marginEnd="32px"
@@ -58,7 +58,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/meat"
-      app:layout_constraintTop_toBottomOf="@+id/ratingFriesText"
+      app:layout_constraintTop_toBottomOf="@+id/seekBarFries"
       app:layout_constraintStart_toEndOf="@+id/ratingImage"
       android:layout_marginStart="32px"
       android:layout_marginTop="32px"
@@ -69,7 +69,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/toppings"
-      app:layout_constraintTop_toBottomOf="@+id/ratingMeatText"
+      app:layout_constraintTop_toBottomOf="@+id/seekBarMeat"
       app:layout_constraintStart_toEndOf="@+id/ratingImage"
       android:layout_marginStart="32px"
       android:layout_marginTop="32px"
@@ -78,45 +78,48 @@
 
   <SeekBar
       android:id="@+id/seekBarFries"
-      android:layout_width="150dp"
+      android:layout_width="200dp"
       android:layout_height="wrap_content"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/ratingFriesText"
+      app:layout_constraintTop_toBottomOf="@+id/ratingFriesText"
       android:thumbTint="@color/red"
       android:progressTint="@color/brown"
       android:max="10"
-      android:progress="6"/>
+      android:progress="6"
+      android:layout_marginTop="32px"/>
 
   <SeekBar
       android:id="@+id/seekBarMeat"
-      android:layout_width="150dp"
+      android:layout_width="200dp"
       android:layout_height="wrap_content"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/ratingMeatText"
+      app:layout_constraintTop_toBottomOf="@+id/ratingMeatText"
       android:thumbTint="@color/red"
       android:progressTint="@color/brown"
       android:max="10"
-      android:progress="6"/>
+      android:progress="6"
+      android:layout_marginTop="32px"/>
 
   <SeekBar
       android:id="@+id/seekBarToppings"
-      android:layout_width="150dp"
+      android:layout_width="200dp"
       android:layout_height="wrap_content"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/ratingToppingsText"
+      app:layout_constraintTop_toBottomOf="@+id/ratingToppingsText"
       android:thumbTint="@color/red"
       android:progressTint="@color/brown"
       android:max="10"
-      android:progress="6"/>
+      android:progress="6"
+      android:layout_marginTop="32px"/>
 
 
   <Button
       android:id="@+id/submitRatingButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Submit"
+      android:text="@string/submit"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/ratingToppingsText"
+      app:layout_constraintTop_toBottomOf="@+id/seekBarToppings"
       android:layout_marginEnd="32px"
       android:layout_marginTop="32px"/>
 

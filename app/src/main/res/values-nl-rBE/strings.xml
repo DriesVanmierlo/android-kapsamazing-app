@@ -19,4 +19,5 @@
     <string name="fries">Frieten</string>
     <string name="meat">Vlees</string>
     <string name="toppings">Toppings</string>
+    <string name="submit">Sla op</string>
 </resources>
