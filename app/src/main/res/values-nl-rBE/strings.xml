@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">kapsamazing-app</string>
+    <string name="app_name">Kapsamazing</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Code</string>
     <string name="title_notifications">Profiel</string>
